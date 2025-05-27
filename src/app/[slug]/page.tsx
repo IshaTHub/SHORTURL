@@ -5,8 +5,8 @@ type Props = {
   params: { slug: string };
 };
 
-export default async function RedirectPage(props: Props) {
-  const { slug } = props.params; //dynamic route segments
+export default async function RedirectPage({ params }: Props) {
+  const { slug } = params; // dynamic route segments
 
   const url = await prisma.url.findUnique({
     where: { slug }, 
