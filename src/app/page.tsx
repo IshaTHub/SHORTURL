@@ -15,7 +15,7 @@ export default function Home() {
     try {
       const parsed = new URL(string);
       return parsed.protocol === 'http:' || parsed.protocol === 'https:';
-    } catch (_) {
+    } catch {
       return false;
     }
   };
@@ -53,7 +53,7 @@ export default function Home() {
           description: data.message || 'Unable to shorten URL',
         });
       }
-    } catch (err) {
+    } catch {
       toast.error('🚨 Error occurred', {
         description: 'Could not connect to the server',
       });
