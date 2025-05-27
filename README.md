@@ -7,7 +7,7 @@ Generate short, shareable links for long URLs—like Bitly, but open-source!
 
 ## 🌐 Live Demo
 
-> [🔗 Click here to try it out](https://vercel.com/isha-tiwaris-projects/shorturl)
+> [🔗 Click here to try it out](https://shorturl-lac.vercel.app/)
 
 ---
 
