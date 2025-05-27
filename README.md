@@ -1,37 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔗 Short URL Generator
 
-## Getting Started
+A clean and efficient **Short URL Generator** built with **Next.js App Router**, **TailwindCSS**, **Prisma**, **PostgreSQL (Neon.tech)**, and **Shadcn UI**.  
+Generate short, shareable links for long URLs—like Bitly, but open-source!
 
-First, run the development server:
+---
+
+## 🌐 Live Demo
+
+> [🔗 Click here to try it out](https://your-deployment-url.vercel.app)
+
+---
+
+## 🚀 Features
+
+- 🔒 Validates and shortens long URLs
+- 🧠 Slug generation with collision handling
+- 🔁 Redirects using server-side logic
+- 🗂 Stores data in PostgreSQL via Prisma ORM
+- 🎨 Styled with TailwindCSS and Shadcn UI
+- ✅ Client-side and API-side error handling
+- 🔔 Toast notifications for user feedback
+- ⌛ Option to add expiration logic
+
+---
+
+## 🛠️ Tech Stack
+
+| Tech           | Description                            |
+|----------------|----------------------------------------|
+| **Next.js 14** | React framework with App Router        |
+| **Prisma**     | ORM to interact with PostgreSQL        |
+| **PostgreSQL** | Relational DB hosted on Neon.tech      |
+| **TailwindCSS**| Utility-first CSS framework            |
+| **Shadcn UI**  | Accessible component library           |
+| **Sonner**     | For toast notifications                |
+| **Lucide**     | Icon library used in UI (e.g., Loader2)|
+
+---
+
+## 📦 Installation
 
 ```bash
+# 1. Clone the repo
+git clone https://github.com/your-username/short-url.git
+cd short-url
+
+# 2. Install dependencies
+npm install
+
+# 3. Set up environment variables
+cp .env.example .env
+# Add your DATABASE_URL inside .env
+
+# 4. Push Prisma schema to DB and generate client
+npx prisma db push
+npx prisma generate
+
+# 5. Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🧠 How It Works
+User enters a long URL in the form on the homepage.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+On clicking "Shorten", a POST request is sent to /api/shorten.
 
-## Learn More
+The backend:
 
-To learn more about Next.js, take a look at the following resources:
+Validates the URL.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Generates a unique slug.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Stores the slug and original URL in the database.
 
-## Deploy on Vercel
+The short URL is returned and displayed.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+When a user visits http://localhost:3000/abc123, it:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# SHORTURL
+Uses [slug]/page.tsx to look up the original URL.
+
+Redirects the user using a server-side redirect.
+
+✅ Validation
+Ensures the URL is valid using URL constructor
+
+Client and server checks
+
+Handles invalid inputs gracefully with toast messages
+
+💡 Future Enhancements
+⌛ Auto-expire URLs after X days
+
+📊 Click analytics & dashboard
+
+⛔ Rate limiting to prevent abuse
+
+🔐 Authenticated users with custom slugs
+
+
+🤝 Contributing
+Pull requests are welcome!
+Please open an issue first to discuss what you would like to change.
+
+📄 License
+MIT © Isha Tiwari

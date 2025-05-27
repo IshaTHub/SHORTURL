@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -12,7 +11,23 @@ export default function Home() {
   const [shortUrl, setShortUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const isValidUrl = (string: string) => {
+    try {
+      const parsed = new URL(string);
+      return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+    } catch (_) {
+      return false;
+    }
+  };
+
   const handleShorten = async () => {
+    if (!isValidUrl(url)) {
+      toast.warning('⚠️ Invalid URL', {
+        description: 'Please enter a valid URL starting with http:// or https://',
+      });
+      return;
+    }
+
     setIsLoading(true);
     setShortUrl('');
     toast.info('📄 Processing URL', {
