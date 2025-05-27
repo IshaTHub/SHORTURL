@@ -1,15 +1,15 @@
 import { redirect, notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 
-type Props = {
+type PageProps = {
   params: { slug: string };
 };
 
-export default async function RedirectPage({ params }: Props) {
-  const { slug } = params; // dynamic route segments
+export default async function RedirectPage({ params }: PageProps) {
+  const slug = params.slug;
 
   const url = await prisma.url.findUnique({
-    where: { slug }, 
+    where: { slug },
   });
 
   if (!url || !url.originalUrl) {
